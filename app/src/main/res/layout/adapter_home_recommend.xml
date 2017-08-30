@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:orientation="vertical">
+
+    <View style="@style/line_h"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="8dp"/>
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/item_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_dark"
+            android:textSize="@dimen/sp_15"
+            tools:text="热门推荐"/>
+
+        <TextView
+            android:id="@+id/item_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_blue"
+            android:textSize="@dimen/sp_12"
+            android:text="更多精彩内容"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_title"
+            android:layout_marginTop="12dp"/>
+    </RelativeLayout>
+
+    <View style="@style/line_h"/>
+</LinearLayout>

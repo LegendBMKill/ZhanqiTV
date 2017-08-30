@@ -1,10 +1,12 @@
 package com.jason.zhanqitv.http;
 
 import com.jason.zhanqitv.constants.C;
+import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,23 +23,36 @@ public class RetrofitApi {
 
 
     private static void init(){
-        if (null==retrofit){
-            synchronized (RetrofitApi.class){
-                if (null == retrofit){
+        if (retrofit == null) {
+            synchronized (RetrofitApi.class) {
+                if (retrofit == null) {
+//                    Timber.d(" ===== Retrofit Init   ======");
                     OkHttpClient.Builder builder = new OkHttpClient.Builder();
-                    LoggerHttpInterceptor interceptor = new LoggerHttpInterceptor();
-                    builder.addInterceptor(interceptor);
+                    HttpLoggingInterceptor intc = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                        @Override
+                        public void log(String message) {
 
-                    OkHttpClient client = builder
-                            .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
-                            .readTimeout(TIME_OUT,TimeUnit.SECONDS)
-                            .writeTimeout(TIME_OUT,TimeUnit.SECONDS)
+                            Logger.d(message);
+                            if (message.startsWith("{")||message.startsWith("--> G")||message.startsWith("--> P")){
+                            }
+                        }
+                    });
+
+                    intc.setLevel(HttpLoggingInterceptor.Level.BODY);
+                    builder.addInterceptor(intc);
+//                    builder.addInterceptor(new HeaderInterceptor());
+
+                    OkHttpClient okhttp3 = builder
+                            .connectTimeout(30_000,  TimeUnit.MILLISECONDS)
+                            .readTimeout(30_000, TimeUnit.MILLISECONDS)
                             .build();
 
                     retrofit = new Retrofit.Builder()
-                            .baseUrl(C.BASE_URL)
-                            .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .baseUrl(C.BASE_URL)
+                            .client(okhttp3)
+                            .validateEagerly(true)
                             .build();
                 }
             }

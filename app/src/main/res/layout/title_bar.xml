@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/color_white_f4"
+                android:tag="title_bar">
+
+
+    <TextView
+        android:id="@+id/bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/color_gray_3"
+        android:textSize="@dimen/sp_16"
+        tools:text="首页"/>
+
+    <TextView
+        android:id="@+id/bar_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:textColor="@color/color_blue"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone"
+        tools:text="联系客服"/>
+
+    <ImageView
+        android:id="@+id/bar_back"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_back_normal"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/bar_r_iv1"
+        android:layout_width="35dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:visibility="gone"
+        tools:src="@drawable/zq_main_history_icon"/>
+
+
+    <ImageView
+        android:id="@+id/bar_r_iv2"
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/bar_r_iv1"
+        android:scaleType="center"
+        android:visibility="gone"
+        tools:src="@drawable/zq_main_history_icon"/>
+
+    <ImageView
+        android:id="@+id/bar_r_iv3"
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/bar_r_iv2"
+        android:scaleType="center"
+        android:visibility="gone"
+        tools:src="@drawable/zq_main_history_icon"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_white_ed"/>
+
+</RelativeLayout>
