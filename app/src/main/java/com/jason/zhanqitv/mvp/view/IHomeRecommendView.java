@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Jason on 2017/8/30 0030.
  */
 
-public interface IHomeContentView extends MvpView {
+public interface IHomeRecommendView extends MvpView {
 
     void setData(List<Recommend> list);
     void setBannerData(List<BannerBean> list);

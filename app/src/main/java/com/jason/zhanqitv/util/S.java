@@ -12,6 +12,7 @@ import com.jason.zhanqitv.App;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Jason on 2017/8/11.
@@ -141,6 +142,21 @@ public class S {
 
     public static int dip2px(float dpValue, Context ctx) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, ctx.getResources().getDisplayMetrics());
+    }
+
+    public static int getGameId(String tab){
+        HashMap<String,Integer> map = new HashMap<>();
+        map.put("王者荣耀",115);
+        map.put("英雄联盟",6);
+        map.put("三国杀",13);
+        map.put("守望先锋",82);
+        map.put("手机游戏",28);
+        map.put("主机游戏",49);
+        map.put("炉石传说",9);
+        map.put("DOTA2",10);
+        map.put("DNF",22);
+        map.put("射击游戏",67);
+        return map.get(tab);
     }
 
 }

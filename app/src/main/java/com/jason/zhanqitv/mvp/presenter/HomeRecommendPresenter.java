@@ -6,7 +6,7 @@ import com.jason.zhanqitv.bean.BaseModel;
 import com.jason.zhanqitv.bean.Recommend;
 import com.jason.zhanqitv.http.HomeApi;
 import com.jason.zhanqitv.http.RetrofitApi;
-import com.jason.zhanqitv.mvp.view.IHomeContentView;
+import com.jason.zhanqitv.mvp.view.IHomeRecommendView;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Jason on 2017/8/30 0030.
  */
 
-public class HomeContentPresenter extends BasePresenter<IHomeContentView> {
+public class HomeRecommendPresenter extends BasePresenter<IHomeRecommendView> {
     @Override
     public void setData() {
         RetrofitApi.create(HomeApi.class)

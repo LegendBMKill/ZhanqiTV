@@ -10,6 +10,7 @@ import com.jason.zhanqitv.R;
 import com.jason.zhanqitv.base.BaseActivity;
 import com.jason.zhanqitv.base.BaseFragment;
 import com.jason.zhanqitv.mvp.fragment.HomeFragment;
+import com.jason.zhanqitv.mvp.fragment.VideoFragment;
 import com.jason.zhanqitv.mvp.presenter.MainPresenter;
 import com.jason.zhanqitv.mvp.view.IMainView;
 
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity<IMainView, MainPresenter> impleme
     @Override
     protected void initView() {
         for (int i = 0; i < 5; i++) {
-            mFragments.add(new HomeFragment());
+            mFragments.add(i==0?new HomeFragment():new VideoFragment());
         }
         mBnbMain.setMode(BottomNavigationBar.MODE_FIXED)
                 .addItem(new BottomNavigationItem(R.drawable.selector_main_bottom_game, "首页"))

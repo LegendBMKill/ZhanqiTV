@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jason.zhanqitv.R;
 import com.jason.zhanqitv.base.BaseFragment;
 import com.jason.zhanqitv.bean.BannerBean;
 import com.jason.zhanqitv.bean.Recommend;
-import com.jason.zhanqitv.mvp.adapter.HomeContentAdapter;
-import com.jason.zhanqitv.mvp.presenter.HomeContentPresenter;
-import com.jason.zhanqitv.mvp.view.IHomeContentView;
+import com.jason.zhanqitv.mvp.adapter.HomeRecommendAdapter;
+import com.jason.zhanqitv.mvp.presenter.HomeRecommendPresenter;
+import com.jason.zhanqitv.mvp.view.IHomeRecommendView;
 import com.jason.zhanqitv.util.GlideApp;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -29,14 +30,14 @@ import butterknife.BindView;
  * Created by Jason on 2017/8/30 0030.
  */
 
-public class HomeContentFragment extends BaseFragment<IHomeContentView, HomeContentPresenter> implements IHomeContentView, SwipeRefreshLayout.OnRefreshListener {
+public class HomeRecommendFragment extends BaseFragment<IHomeRecommendView, HomeRecommendPresenter> implements IHomeRecommendView, SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.content_rv)
     RecyclerView mContentRv;
     @BindView(R.id.content_srl)
     SwipeRefreshLayout mContentSrl;
 
     private List<Recommend> mRecommends;
-    private HomeContentAdapter mAdapter;
+    private HomeRecommendAdapter mAdapter;
     private Banner mBanner;
 
     @Override
@@ -47,8 +48,14 @@ public class HomeContentFragment extends BaseFragment<IHomeContentView, HomeCont
     @Override
     protected void initView() {
         mContentRv.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter = new HomeContentAdapter(mContext, mRecommends);
+        mAdapter = new HomeRecommendAdapter(mContext, mRecommends);
         mContentRv.setAdapter(mAdapter);
+
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            }
+        });
 
         View headerView = View.inflate(mContext, R.layout.header_banner, null);
         mAdapter.addHeaderView(headerView);
@@ -85,8 +92,8 @@ public class HomeContentFragment extends BaseFragment<IHomeContentView, HomeCont
     }
 
     @Override
-    public HomeContentPresenter createPresenter() {
-        return new HomeContentPresenter();
+    public HomeRecommendPresenter createPresenter() {
+        return new HomeRecommendPresenter();
     }
 
     @Override
